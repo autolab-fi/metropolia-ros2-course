@@ -81,6 +81,11 @@ a separate shell, so its current directory and sourced environments are local to
 that shell. The base ROS2 environment is sourced automatically. After building, use
 `source install/setup.bash` in any new terminal that needs your own package.
 
+Use **+** to open another terminal and **×** beside a terminal tab to close it.
+Closing a terminal stops its running processes, so save nano before closing.
+Saved files remain in the shared workspace. You can close every terminal and
+open a new one with **+**; **End session** ends the whole development environment.
+
 ROS discovery can take a few seconds. If `ros2 node list` initially shows no
 nodes, run it again, or use `ros2 node list --no-daemon --spin-time 2`.
 
