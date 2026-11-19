@@ -1,0 +1,1 @@
+{"schema_version":1,"runtime":"ros2-jazzy","lessons":[{"id":"reach_target","number":"2.6","title":"Reach a target point","markdown":"lessons/2.6/README.md","starter":"lessons/2.6/solution.py","checker":"reach_target_v1","target":[0.60,-0.185],"tolerance":0.03}]}
