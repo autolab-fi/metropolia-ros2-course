@@ -13,8 +13,11 @@ content; execution belongs to `ondroid-ros2-runtime` and the existing physical
 worker. It contains no credentials or user submissions.
 
 The production pilot is a normal course in the main platform database. Its card
-opens a separate ROS workspace using the existing dashboard header, dock, editor,
-lesson view, output timeline and checks history. Access remains controlled by
+opens a separate ROS workspace using the existing dashboard header, dock,
+lesson view, output timeline and checks history, with real terminal tabs and nano.
+Terminals share one server-side workspace and live simulator. `check-in-sim` runs
+practice from the terminal; Check in lab submits a saved project through the
+physical robot's exclusive queue. Access remains controlled by
 native course roles; this seed does not grant any user new privileges.
 
 See `PROJECT_STATUS.md` for tested behavior and unfinished curriculum work.

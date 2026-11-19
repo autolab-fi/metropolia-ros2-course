@@ -12,7 +12,7 @@ Frontend draft PR: https://github.com/autolab-fi/autolab-fe/pull/387
 
 The native main database contains course 20/task 401. Existing course permissions,
 submission history and progress are used. The seed grants no new roles. The
-frontend reuses the course header, dock, assignment view, editor, output timeline
+frontend reuses the course header, dock, assignment view, output timeline
 and checks components through separate ROS adapters. ROS Topics displays selected
 message field paths, units and original observation times. The robot view uses
 the existing Metropolia 3D scene, including for saved pose trails.
@@ -35,7 +35,68 @@ magnetic docking or slip. Physical `robot/pose` currently describes the camera
 tag centre, converted to a right-handed ROS map (metres/radians), not wheel
 odometry or calibrated base_link. Requested speed can differ from measured speed.
 
+## Interactive environment checkpoint
+
+The ROS route now opens a personal Linux workspace on the server, with up to four
+real bash/PTY terminals and nano. All terminals share `/workspace/ros2_ws`; shell
+working directories and environment changes remain separate. The former
+single-file browser editor adapter was removed. Existing Linux, LineRobot and
+OpenCV course components/gateways are unchanged.
+
+Students inspect ROS nodes/topics, edit their package, build with colcon and run
+it continuously in their own simulator. `check-in-sim` resets the practice model,
+builds/runs `run.sh` and prints practice feedback. This never reserves the robot
+or grants a laboratory grade. The view can switch between Simulator and Lab
+attempt. The model is still ideal differential-drive kinematics, not camera
+simulation or wheel/physics modeling.
+
+Check in lab freezes `src/` and `run.sh` into the native submission, then uses the
+existing shared physical queue. The Pi rebuilds for ARM64 in its isolated
+sandbox. A complete project has a separate 45-second startup limit; active motion
+remains at most 60 seconds. Plain Python startup stays at 15 seconds. Users can
+continue editing while the submitted snapshot waits or executes. Laboratory Stop
+remains available even after the personal development session ends.
+
+Each development session is limited to 1 CPU, 768 MiB RAM, 128 PIDs, 256 MiB
+workspace tmpfs and 128 MiB temporary storage, with no network/host mounts. Pilot
+capacity is two concurrent sessions, not a measured production capacity. The
+manager runs on the server and does not consume the robot Pi's resources.
+
+Sessions last 30 minutes, with a 10-minute keyboard idle limit. Sources are backed
+up every 30 seconds, before a lab check and on explicit End; one latest backup
+per user/course is retained privately. Only UTF-8 source files in src/ and run.sh
+are portable (64 files, 64 KiB per file, 192 KiB total); build/install/log,
+unsaved nano buffers and running processes are temporary. A new session restores
+the last saved sources. HTTP terminal input has retry acknowledgments and browser
+ownership fencing; terminal output is bounded. An init process reaps terminated
+ROS children. Manager cleanup is scoped to its own container label.
+
+Before scaling beyond this pilot: load-test simultaneous builds and continuous
+nodes, replace/batch the current bounded HTTP terminal polling as needed, add
+session routing and durable shared source storage for multiple managers. No
+multi-server automatic scaling or full beginner curriculum is claimed yet.
+
 ## Qualification
+
+The interactive workspace milestone additionally passed browser nano editing,
+shared files, practice simulation, reload recovery and four viewport sizes.
+The project check on the real robot passed with 29.422 s startup, 17.115 s active
+control and 1.47 cm endpoint error. Ending development and then stopping the lab
+check confirmed cancellation/device release in 5.143 s. Existing native LineRobot
+test_drive and OpenCV 3.5 checks passed on the final worker, and both browser
+simulations passed. Backend: 38 tests; project format: 3 tests; ARM64: 13 tests.
+
+The initial dock-release attempt failed its existing movement confirmation, and
+the old 15-second startup budget was too short for package build/ROS launch.
+The qualified project path now has a separate 45-second startup budget; active
+motion remains limited to 60 seconds. Dock limits were not relaxed. Normal
+AutoCharge subsequently confirmed charging with three stable samples and its
+cron was restored. No maintenance lease or active ROS attempt was left behind.
+
+Interactive qualification and deployment evidence:
+https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/WORKSPACE_QUALIFICATION_20261119.md
+
+The results below are the earlier single-file pilot qualification:
 
 - Real ROS2 target check passed on Metropolia: 127 commands, 15.843 s active
   control, about 1.65 cm endpoint error (3 cm tolerance). A final Check in lab
