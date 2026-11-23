@@ -29,7 +29,8 @@
       "checker": "line_sensor_observe_v1",
       "line_sensor": true,
       "target": null,
-      "tolerance": 0.03
+      "tolerance": 0.03,
+      "launch": "python"
     },
     {
       "id": "drive_and_topics",
@@ -45,7 +46,8 @@
         0.6,
         -0.185
       ],
-      "tolerance": 0.03
+      "tolerance": 0.03,
+      "launch": "python"
     },
     {
       "id": "line_sensor_follow",
@@ -61,7 +63,8 @@
         0.6,
         -0.155
       ],
-      "tolerance": 0.04
+      "tolerance": 0.04,
+      "launch": "python"
     },
     {
       "id": "reach_target",

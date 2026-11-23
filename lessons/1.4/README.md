@@ -25,7 +25,8 @@ Save with Ctrl+O, Enter; leave nano with Ctrl+X. In Terminal 2, build and run:
 bash run.sh
 ```
 
-It takes a few seconds to build. Watch the Simulator and open **ROS Topics**.
+These single-file demos launch Python directly in the installed ROS environment,
+so no package build is needed for the first run. Watch Simulator and ROS Topics.
 `/robot/line_sensors` uses `std_msgs/msg/UInt16MultiArray`; `message.data` contains
 exactly eight ADC readings, channel **0 on the right**, channel **7 on the left**.
 The eight bars show the readings; green marks channels with line contrast.
@@ -66,8 +67,7 @@ Source files belong to this activity and are saved independently of other demos.
 ## Run the same code on the physical robot
 
 Save all source files, then choose **Check in lab**. The existing queue positions
-the robot, rebuilds the frozen source project on the Raspberry Pi and starts the
-same node. The first explicit zero-velocity heartbeat arms the bounded hardware
+the robot and starts the same frozen Python node on the Raspberry Pi. The first explicit zero-velocity heartbeat arms the bounded hardware
 controller, allowing physical sensor telemetry while the motors remain stopped.
 The ROS node does not access I2C or MQTT itself.
 
@@ -97,3 +97,18 @@ the maximum 0.05 m/s and ±0.8 rad/s platform limits. The starter uses 0.025 m/s
 and caps turning at ±0.6 rad/s. Do not continue blindly when the line disappears:
 missing/flat readings or data older than 0.35 seconds produce a zero command.
 The laboratory also stops independently if trusted sensor telemetry is stale.
+
+## Optional package workflow
+
+The normal ament Python package remains in the workspace. To practise the
+standard package build/run flow instead, stop the current node and use:
+
+```bash
+colcon build --symlink-install
+source install/setup.bash
+ros2 run my_robot controller
+```
+
+The default run.sh deliberately starts the same controller.py directly for fast
+demonstration feedback. A lab check runs the exact saved run.sh; changing how you
+launch a node manually does not change that snapshot script.
