@@ -30,7 +30,14 @@ browser qualification details are maintained in the backend release report.
 
 The original frontend pilot PR 387 has merged; the ROS course is available from
 production at https://ondroid.org/user/20/ros2. Live sandbox UI is reviewed in a
-new frontend PR; the current release report links its preview.
+new frontend PR [#399](https://github.com/autolab-fi/autolab-fe/pull/399), with
+preview https://pr-399.ondroid-org.pages.dev/user/20/ros2.
+
+Sandbox laboratory check **25862** passed on Metropolia on 2026-11-23: the
+saved package rebuilt on ARM64 (28.487 s startup), reached the goal and stopped
+(14.786 s active execution, 114 commands, 0.0148 m final distance). The complete
+interactive terminal/scene/topic workflow also passed in a real browser without
+API mocks. Existing physical worker/firmware and queue were retained.
 
 Remaining: author the beginner curriculum step by step, additional topics and
 sensors, simulated camera/encoder realism, and an actual physical video panel.
