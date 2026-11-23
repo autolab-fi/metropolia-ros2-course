@@ -1,5 +1,64 @@
 # ROS2 course status — 2026-11-23
 
+## Interface cleanup and smooth display
+
+The current frontend PR remains #399. Simulator and Lab are independent Dockview
+modules. Simulator contains only the scene; the source buttons, sample counter,
+status banners and combined view selector have been removed. ROS Topics shows
+only current-session messages, without Live workspace / Saved attempt controls.
+Lab still shows the selected physical check's measured pose trail, not camera
+video. History/results remain in Checks and Output. The ROS layout is version 4.
+
+The ROS browser adapter now interpolates received positions between the roughly
+3–4 browser updates per second. Display transitions follow observed cadence
+(100–600 ms bounds) and the short angular path. They do not change ROS messages,
+simulation physics, student control, time limits or grading. New sessions,
+resets/large jumps and saved observations snap instead of animating a false trip.
+No position is extrapolated beyond a received value; drawing stops at rest/hidden.
+
+The renderer and UI changes are isolated to ROS. Shared LineRobot/OpenCV renderer
+code, physical workers, firmware, queues and their execution images are unchanged.
+The lesson source files and checker targets are unchanged; only instructions and
+UI adapters were updated. Prior qualification below is historical where it
+mentions the removed counter or source selector.
+
+## Available components and the next camera extension
+
+Students currently have real ROS2/rclpy, four PTYs sharing a Python package,
+colcon/nano/ROS CLI, /robot/pose (PoseStamped), /robot/cmd_vel (Twist), and the
+/simulation/reset Empty service. The built-in node is /ondroid_bridge; the starter
+adds /reach_target. Sandbox 1.1 includes working commands for graph discovery,
+manual movement, stop, reset, editing/running a node and a saved-project lab check.
+
+The broader simulator already renders an independent overhead BGR camera for
+OpenCV at 640×480, and models LineRobot sensors. These are NOT ROS publishers.
+The ROS scene's orbit view is visualization; its sensor graphics are not ROS
+sensor data. The deployed ROS development image was inspected: sensor_msgs is
+present, but cv2 and cv_bridge are not installed. Encoders, line sensors, IMU,
+range and battery have no learner-facing ROS topics in this pilot.
+
+Proposed next extension (not implemented by this cleanup): reuse the camera
+renderer, initially the same overhead view as the existing laboratory camera.
+Publish sensor_msgs/Image on /camera/image_raw; install native OpenCV and
+cv_bridge in the ROS image; let student rclpy nodes process images and publish
+/camera/processed. Display original and processed topics in a separate camera
+panel using the existing OpenCV presentation components. A subscriber can then
+publish the same /robot/cmd_vel for a vision-controlled project.
+
+Because ROS executes on the server while current OpenCV camera generation runs
+in a browser worker, the renderer needs an explicit frame bridge or a bounded
+server-side rendering service. Prefer a canonical frame producer per workspace
+that continues with terminal execution; do not silently make the authoritative
+ROS simulation depend on an open viewer. Browser-fed frames can be practice input,
+not independent grading evidence. Start at 640×480 / 5 fps and measure resources.
+A robot-mounted virtual viewpoint is an additional rendering mode; it is not an
+existing onboard physical camera. No external MQTT control API is needed for
+students: use standard ROS publishers/subscribers and cv_bridge conversions.
+
+---
+
+## Previous live sandbox checkpoint
+
 ## Live sandbox checkpoint
 
 The pilot now includes **1.1 ROS2 sandbox: observe, drive and run a node** and

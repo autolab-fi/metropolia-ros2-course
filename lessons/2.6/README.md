@@ -108,8 +108,9 @@ for its own architecture.
 
 The robot joins the same device queue as the Python and OpenCV courses. It first
 leaves the dock if needed and moves to the starting pose using the existing reset
-procedure. Your ROS2 process starts after positioning. Switch the robot view to
-**Lab attempt** to see this attempt; **Simulator** still shows your personal model.
+procedure. Your ROS2 process starts after positioning. Open the separate
+**Lab** panel to see this attempt; **Simulator** still shows your personal model.
+**ROS Topics** shows only your personal session's messages.
 
 Queue and positioning time are separate from the maximum 60 seconds of active control. The checker observes the camera independently of your node. Publishing a pose or printing “passed” cannot pass the task. **Stop lab check** cancels this attempt and waits for the normal robot stop procedure.
 

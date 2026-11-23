@@ -8,8 +8,9 @@ virtual robot, then run the Python node, and finally submit its files to the lab
 
 Choose **Start session** in **Terminals**. A Linux container and a simulator start
 together on the server. The **Simulator** view shows the robot immediately;
-you do not need to run a check first. Its live sample number advances even when
-the robot is stationary. If updates stop, the view reports an interruption.
+you do not need to run a check first. This panel contains only the scene; use
+your terminals and ROS Topics to inspect the running system. The separate Lab
+panel is reserved for the physical check.
 
 Use **+** to open more terminals, up to four. These are independent shells in
 the same container, sharing `/workspace/ros2_ws` and its files. Use them as:
@@ -53,10 +54,9 @@ the initial position is approximately `(0.40, -0.185)`. Orientation is a
 quaternion. The timestamp changes even when the position does not.
 **Ctrl+C** stops this command. It does not end your environment.
 
-Open **ROS Topics → Live workspace** to see the latest pose and, once you send
-one, the latest velocity message. These are your interactive messages, separate
-from **Saved attempt** observations. A displayed command is the last received
-message, not proof that the robot is still moving.
+Open **ROS Topics** to see the latest pose and, once you send one, the latest
+velocity message from your current personal session. A displayed command is the
+last received message, not proof that the robot is still moving.
 
 ## 3. Move without a Python node
 
@@ -147,10 +147,10 @@ copied. The laboratory runs only the saved project. A manual turn performed in
 step 3 does not make the physical robot turn. Later file edits do not change an
 already submitted snapshot.
 
-**Output** shows queue/reset events and the result. **Simulator / Lab → Lab
-attempt** shows that attempt's measured trajectory, not your personal model.
-**ROS Topics → Saved attempt** shows its observations. Your interactive
-simulator remains separate and available. **Stop lab check** cancels the check.
+**Output** shows queue/reset events and the result. Open the separate **Lab**
+panel to see the attempt's measured trajectory. **Simulator** continues to show
+your personal model, and **ROS Topics** continues to show your personal session's
+messages. **Stop lab check** cancels the laboratory check.
 
 ## Keep your work
 
@@ -163,3 +163,23 @@ Save before switching activities: choosing another lesson ends this environment
 and stops its processes. This sandbox and lesson 2.6 retain separate saved files.
 Closing a terminal with **×** also stops its processes; it leaves shared files
 and the simulator available to the other terminals.
+
+## What can I use now?
+
+| Interface | What it does | Try it |
+| --- | --- | --- |
+| `/robot/pose` (`PoseStamped`) | Current x/y position and orientation | `ros2 topic echo /robot/pose` |
+| `/robot/cmd_vel` (`Twist`) | Forward and turning velocity | Publish the command from step 3 |
+| `/simulation/reset` (`Empty`) | Restore the model's starting pose | Call the service from step 4 |
+| Your Python package | Subscribe, calculate and publish using rclpy | `bash run.sh` |
+
+Use `ros2 node list`, `ros2 topic list`, `ros2 topic info /robot/pose` and
+`ros2 service list` to discover these interfaces. The simulator node is
+`/ondroid_bridge`; the example adds `/reach_target`. ROS also provides normal
+background topics/services such as parameter events and logging.
+
+The interactive orbit view is a visualisation, not a ROS camera topic. This
+pilot does not yet publish camera frames, line-sensor values, encoders, IMU,
+range or battery readings. Their visible geometry does not imply a connected
+ROS interface. OpenCV/cv_bridge image processing is a planned extension, not
+a command you can use in the current image.
