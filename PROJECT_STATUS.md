@@ -1,5 +1,14 @@
 # ROS2 course status — 2026-11-23
 
+Production: [ROS2 course](https://ondroid.org/user/20/ros2).
+Frontend [PR #399](https://github.com/autolab-fi/autolab-fe/pull/399) is merged
+as `c9b5c56`; publication workflow `45234356313` succeeded for frontend and simulator.
+The published build was rechecked in a real browser: all three terminal/practice
+flows passed again, sensor lab check **25872** passed, and the same stand's
+LineRobot passed simulation **25873** and physical check **25874** with live video.
+Detailed architecture, immutable pins and qualification evidence are in the
+[release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/LINE_SENSOR_DEMOS_20261123.md).
+
 ## Current interactive demonstrations
 
 Course 20 contains complete English integration demonstrations, with independent
@@ -79,6 +88,17 @@ Pose grading still uses the camera independently. Existing deadman, 60-second
 active limit, wheel/velocity caps, exclusive allocation, reset, confirmed stop
 and device release remain in force. Sensor cutoff and forbidden monitor movement
 were also tested with real ROS containers.
+
+## Operational follow-up after release
+
+All course qualifications above passed. On the final return to the magnetic dock,
+normal AutoCharge confirmed three samples twice, but later idle telemetry changed
+to charging false. An existing zero-offset DockAlignment cycle could not confirm
+dock exit. The final fleet sample is true again; sustained charging is therefore
+not established. Check physical contact/telemetry separately before relying on
+unattended docking. No docking settings or firmware were changed. Worker/camera
+remain online, no checks or QA sessions are active, maintenance is off and the
+normal charging cron is restored. See the backend release report for evidence.
 
 ## Remaining extensions
 
