@@ -22,6 +22,8 @@ The lesson source files and checker targets are unchanged; only instructions and
 UI adapters were updated. Prior qualification below is historical where it
 mentions the removed counter or source selector.
 
+Qualification: [interface cleanup report](docs/INTERFACE_CLEANUP_20261123.md).
+
 ## Available components and the next camera extension
 
 Students currently have real ROS2/rclpy, four PTYs sharing a Python package,

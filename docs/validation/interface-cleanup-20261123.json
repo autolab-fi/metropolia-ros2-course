@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "origin": "https://pr-399.ondroid-org.pages.dev",
+  "draws": 24,
+  "packets": 2,
+  "idle_draws": 0,
+  "lab_history_submission": 25862,
+  "live_topics_isolated": true,
+  "separate_panels": true,
+  "viewports": [
+    "1920x1080",
+    "1440x900",
+    "1024x768",
+    "390x844"
+  ],
+  "errors": [],
+  "robot_used": false,
+  "frontend_commit": "959309a609f151d37e80bc9941b6aba9c07172af",
+  "simulator_commit": "3650baf",
+  "simulator_unit_tests": 68,
+  "ros_browser_tests": 2,
+  "line_simulator_browser_tests": 2,
+  "opencv_browser_tests": 1,
+  "frontend_fixture_tests": 1,
+  "typescript_errors": 0,
+  "backend_changed": false,
+  "physical_worker_changed": false
+}
