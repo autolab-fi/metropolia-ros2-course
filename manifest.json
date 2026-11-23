@@ -15,7 +15,53 @@
         0.6,
         -0.185
       ],
+      "tolerance": 0.03,
+      "line_sensor": false
+    },
+    {
+      "id": "line_sensor_monitor",
+      "number": "1.2",
+      "title": "Read the eight line sensors",
+      "module_number": 1,
+      "module_title": "Interactive ROS2 sandbox",
+      "markdown": "lessons/1.2/README.md",
+      "starter": "lessons/1.2/solution.py",
+      "checker": "line_sensor_observe_v1",
+      "line_sensor": true,
+      "target": null,
       "tolerance": 0.03
+    },
+    {
+      "id": "drive_and_topics",
+      "number": "1.3",
+      "title": "Move and publish a distance topic",
+      "module_number": 1,
+      "module_title": "Interactive ROS2 sandbox",
+      "markdown": "lessons/1.3/README.md",
+      "starter": "lessons/1.3/solution.py",
+      "checker": "reach_target_v1",
+      "line_sensor": true,
+      "target": [
+        0.6,
+        -0.185
+      ],
+      "tolerance": 0.03
+    },
+    {
+      "id": "line_sensor_follow",
+      "number": "1.4",
+      "title": "Follow the line with ROS2",
+      "module_number": 1,
+      "module_title": "Interactive ROS2 sandbox",
+      "markdown": "lessons/1.4/README.md",
+      "starter": "lessons/1.4/solution.py",
+      "checker": "line_follow_v1",
+      "line_sensor": true,
+      "target": [
+        0.6,
+        -0.155
+      ],
+      "tolerance": 0.04
     },
     {
       "id": "reach_target",
@@ -28,7 +74,8 @@
         0.6,
         -0.185
       ],
-      "tolerance": 0.03
+      "tolerance": 0.03,
+      "line_sensor": false
     }
   ]
 }
