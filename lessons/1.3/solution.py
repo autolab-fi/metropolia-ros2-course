@@ -38,7 +38,7 @@ class DriveAndTopics(Node):
             if not self.done:
                 error = math.atan2(math.sin(math.atan2(dy, dx) - yaw), math.cos(math.atan2(dy, dx) - yaw))
                 command.angular.z = max(-0.8, min(0.8, 2.0 * error))
-                command.linear.x = 0.03 if abs(error) < 0.4 else 0.0
+                command.linear.x = 0.04 if abs(error) < 0.4 else 0.0
         self.velocity.publish(command)
 
 

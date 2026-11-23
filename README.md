@@ -9,7 +9,10 @@ prerequisite exercises.
 `manifest.json` lists runnable pilot lessons. **1.1 ROS2 sandbox** is a guided
 interactive test of terminal commands, live topics, movement, reset, editing,
 project execution and a saved-project laboratory check. Its files are separate
-from lesson 2.6. `lessons/2.6/README.md` explains the
+from lesson 2.6. Complete demonstrations **1.2 Read the eight line sensors**,
+**1.3 Move and publish a distance topic**, and **1.4 Follow the line with the
+line sensor** use ordinary ROS publishers/subscribers in both personal simulation
+and the physical laboratory. Each activity has independent saved sources. `lessons/2.6/README.md` explains the
 exercise and `solution.py` is its complete starter for integration testing.
 `examples/reach_target.py` is the reference solution. This repository is lesson
 content; execution belongs to `ondroid-ros2-runtime` and the existing physical

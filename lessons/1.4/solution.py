@@ -51,7 +51,7 @@ class FollowLine(Node):
             self.distance.publish(Float32(data=math.hypot(x-self.initial[0], y-self.initial[1])))
             self.done = self.done or math.hypot(x-0.60, y+0.155) <= 0.028
         if fresh_pose and not self.done and now-self.sensor_at < 0.35 and self.error is not None:
-            command.linear.x = 0.025
+            command.linear.x = 0.04
             command.angular.z = max(-0.6, min(0.6, 0.6*self.error))
         # Missing line, stale sensors or a completed goal => explicit zero.
         self.velocity.publish(command)

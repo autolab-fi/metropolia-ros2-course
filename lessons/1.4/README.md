@@ -93,7 +93,7 @@ connection. Saved checks can be opened from **Checks**.
 The program finds the relative contrast of each channel, then a weighted
 left/right error. A positive error means the line is on the robot's left, so
 positive angular.z turns toward it. Try reducing the forward speed first; keep
-the maximum 0.05 m/s and ±0.8 rad/s platform limits. The starter uses 0.025 m/s
+the maximum 0.05 m/s and ±0.8 rad/s platform limits. The starter uses 0.04 m/s
 and caps turning at ±0.6 rad/s. Do not continue blindly when the line disappears:
 missing/flat readings or data older than 0.35 seconds produce a zero command.
 The laboratory also stops independently if trusted sensor telemetry is stale.
