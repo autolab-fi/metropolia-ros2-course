@@ -3,6 +3,7 @@ import math
 import time
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import ExternalShutdownException
 from geometry_msgs.msg import PoseStamped, Twist
 from std_msgs.msg import UInt16MultiArray, Float32
 
@@ -61,7 +62,7 @@ def main():
     node = FollowLine()
     try:
         rclpy.spin(node)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, ExternalShutdownException):
         pass
     finally:
         if rclpy.ok():

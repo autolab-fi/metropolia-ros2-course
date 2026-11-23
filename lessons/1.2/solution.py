@@ -2,6 +2,7 @@
 import time
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import ExternalShutdownException
 from geometry_msgs.msg import Twist
 from std_msgs.msg import UInt16MultiArray
 
@@ -32,7 +33,7 @@ def main():
     node = SensorMonitor()
     try:
         rclpy.spin(node)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, ExternalShutdownException):
         pass
     finally:
         if rclpy.ok():
