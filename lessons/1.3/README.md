@@ -9,6 +9,11 @@ control library is needed.
 
 The node subscribes to pose, drives toward `(0.60, -0.185)` m, stops within 0.03 m, and publishes its displacement on `/demo/distance`. The controller continues publishing zero after arrival.
 
+The starter requests 0.04 m/s. The simulator models ideal motion, but the
+physical motors need enough power to overcome friction: 0.03 m/s stalled during
+testing on this stand. Compare requested speed with the measured pose rather
+than assuming they are equal.
+
 ## Start it from Linux
 
 1. Choose this activity, then **Start session** in Terminals. Save nano before
