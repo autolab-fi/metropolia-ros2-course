@@ -16,6 +16,10 @@ than assuming they are equal.
 
 ## Start it from Linux
 
+Use **+** beside the terminal tabs to open Terminal 2, 3 or 4. They share
+the same files, ROS graph and simulator; each shell has its own processes and
+environment variables. Keep only one movement controller running at a time.
+
 1. Choose this activity, then **Start session** in Terminals. Save nano before
    changing activities: the previous environment is saved and ended.
 2. In Terminal 1, open the complete program:
