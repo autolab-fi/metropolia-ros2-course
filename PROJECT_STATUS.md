@@ -1,4 +1,46 @@
-# ROS2 course status — 2026-11-19
+# ROS2 course status — 2026-11-23
+
+## Live sandbox checkpoint
+
+The pilot now includes **1.1 ROS2 sandbox: observe, drive and run a node** and
+**2.6 Reach a target point**. Sandbox uses the same proven physical goal, with
+additional simulation-only CLI experiments. Both complete starters use ordinary
+rclpy. The first is an integration playground, not the finished beginner module.
+
+Starting a terminal session starts a real ROS2 simulator in that server container.
+Run `bash run.sh` or publish `/robot/cmd_vel` from any of its four shared-file
+terminals: the scene updates without a check. `/robot/pose` is published at 10 Hz;
+the browser requests current telemetry about every 250 ms. ROS Topics now has
+separate Live workspace and Saved attempt sources. A host-received pose sequence
+advances even when stationary; lack of updates is labelled interrupted after
+2 seconds. This is interactive feedback, not a hard real-time guarantee.
+
+Each exercise retains its own source backup. Switching lessons saves and ends
+the prior session; save nano first. Check in lab freezes that selected exercise's
+`src/` and `run.sh`. Shell commands, transient ROS parameters and processes do not
+transfer. Lab grading still observes the physical camera independently and uses
+the same exclusive Python/OpenCV/ROS robot worker, reset and stop workflow.
+Physical firmware, queues and worker images are unchanged by this checkpoint.
+
+Runtime tests qualify ordinary terminal-driven movement (without check-in-sim),
+Ctrl+C stopping, reset, independent sources, four terminals, terminal close,
+restore, source-only project execution and owner isolation. Backend tests cover
+sandbox task/template selection and immutable attempt identity. Deployment and
+browser qualification details are maintained in the backend release report.
+
+The original frontend pilot PR 387 has merged; the ROS course is available from
+production at https://ondroid.org/user/20/ros2. Live sandbox UI is reviewed in a
+new frontend PR; the current release report links its preview.
+
+Remaining: author the beginner curriculum step by step, additional topics and
+sensors, simulated camera/encoder realism, and an actual physical video panel.
+The current Lab attempt view shows measured pose trajectories, not camera video.
+
+---
+
+The following is the historical 2026-11-19 technical qualification.
+
+## Original delivered milestone — 2026-11-19
 
 ## Delivered milestone
 

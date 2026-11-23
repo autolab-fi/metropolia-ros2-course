@@ -6,7 +6,10 @@ project. Development starts with the technical vertical slice **2.6 Reach a targ
 point**, so the complete execution path can be qualified before authoring all the
 prerequisite exercises.
 
-`manifest.json` lists runnable pilot lessons. `lessons/2.6/README.md` explains the
+`manifest.json` lists runnable pilot lessons. **1.1 ROS2 sandbox** is a guided
+interactive test of terminal commands, live topics, movement, reset, editing,
+project execution and a saved-project laboratory check. Its files are separate
+from lesson 2.6. `lessons/2.6/README.md` explains the
 exercise and `solution.py` is its complete starter for integration testing.
 `examples/reach_target.py` is the reference solution. This repository is lesson
 content; execution belongs to `ondroid-ros2-runtime` and the existing physical

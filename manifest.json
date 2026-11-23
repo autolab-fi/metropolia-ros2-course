@@ -1,1 +1,34 @@
-{"schema_version":1,"runtime":"ros2-jazzy","lessons":[{"id":"reach_target","number":"2.6","title":"Reach a target point","markdown":"lessons/2.6/README.md","starter":"lessons/2.6/solution.py","checker":"reach_target_v1","target":[0.60,-0.185],"tolerance":0.03}]}
+{
+  "schema_version": 1,
+  "runtime": "ros2-jazzy",
+  "lessons": [
+    {
+      "id": "ros_sandbox",
+      "number": "1.1",
+      "title": "ROS2 sandbox: observe, drive and run a node",
+      "module_number": 1,
+      "module_title": "Interactive ROS2 sandbox",
+      "markdown": "lessons/1.1/README.md",
+      "starter": "lessons/1.1/solution.py",
+      "checker": "reach_target_v1",
+      "target": [
+        0.6,
+        -0.185
+      ],
+      "tolerance": 0.03
+    },
+    {
+      "id": "reach_target",
+      "number": "2.6",
+      "title": "Reach a target point",
+      "markdown": "lessons/2.6/README.md",
+      "starter": "lessons/2.6/solution.py",
+      "checker": "reach_target_v1",
+      "target": [
+        0.6,
+        -0.185
+      ],
+      "tolerance": 0.03
+    }
+  ]
+}
