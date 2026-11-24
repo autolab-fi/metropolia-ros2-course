@@ -1,11 +1,13 @@
 # ROS2 course status — 2026-11-24
 
 Production: [ROS2 course](https://ondroid.org/user/20/ros2).
-Frontend [PR #399](https://github.com/autolab-fi/autolab-fe/pull/399) is merged
-as `c9b5c56`; publication workflow `45234356313` succeeded for frontend and simulator.
-The published build was rechecked in a real browser: all three terminal/practice
-flows passed again, sensor lab check **25872** passed, and the same stand's
-LineRobot passed simulation **25873** and physical check **25874** with live video.
+Latest frontend [PR400](https://github.com/autolab-fi/autolab-fe/pull/400) is merged
+as `1fcc19c`; publication workflow `45434854743` succeeded for frontend and simulator.
+The production browser rechecked physical topic display, saved video playback
+and source switching. Full qualification is recorded in the video/topics section below.
+The previous PR399 checkpoint passed all three terminal/practice flows, sensor
+lab check **25872**, and the same stand's LineRobot simulation **25873** and physical
+check **25874** with live video.
 Detailed architecture, immutable pins and qualification evidence are in the
 [release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/LINE_SENSOR_DEMOS_20261123.md).
 
@@ -53,7 +55,9 @@ checks covered desktop, tablet and mobile playback/source switching with no page
 JavaScript errors. The final queues are empty and the charging cron is idle.
 
 Details: [video/topics release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/LAB_VIDEO_TOPICS_20261124.md).
-Frontend: [PR400](https://github.com/autolab-fi/autolab-fe/pull/400).
+Frontend: [PR400](https://github.com/autolab-fi/autolab-fe/pull/400), merged and
+published to production. Recording playback and source switching were rechecked
+on production with no page JavaScript errors.
 
 ## Current interactive demonstrations
 
