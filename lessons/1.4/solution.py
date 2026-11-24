@@ -1,4 +1,4 @@
-"""Follow Octoliner readings; use pose only to finish inside the bounded demo goal."""
+"""Follow Octoliner readings for a bounded duration, then publish a stop."""
 import math
 import time
 import rclpy
@@ -20,6 +20,10 @@ class FollowLine(Node):
         self.sensor_at = self.pose_at = 0.0
         self.pose = self.initial = None
         self.done = False
+        self.demo_seconds = float(self.declare_parameter('demo_seconds', 55.0).value)
+        if not math.isfinite(self.demo_seconds) or not 0 <= self.demo_seconds <= 55:
+            raise ValueError('demo_seconds must be between 0 and 55 seconds')
+        self.started_at = None
 
     def sense(self, message):
         raw = list(message.data)
@@ -46,13 +50,24 @@ class FollowLine(Node):
         command = Twist()
         now = time.monotonic()
         fresh_pose = self.pose and now - self.pose_at < 0.4
+        finished = self.done
+        if self.demo_seconds and self.started_at is not None:
+            self.done = self.done or now - self.started_at >= self.demo_seconds
         if fresh_pose:
             x, y = self.pose
             self.distance.publish(Float32(data=math.hypot(x-self.initial[0], y-self.initial[1])))
-            self.done = self.done or math.hypot(x-0.60, y+0.155) <= 0.028
+            if not self.demo_seconds:
+                self.done = self.done or math.hypot(x-0.60, y+0.155) <= 0.028
         if fresh_pose and not self.done and now-self.sensor_at < 0.35 and self.error is not None:
+            if self.started_at is None:
+                self.started_at = now
+                if self.demo_seconds:
+                    self.get_logger().info(f'Following the line for {self.demo_seconds:g} seconds.')
             command.linear.x = 0.04
             command.angular.z = max(-0.6, min(0.6, 0.6*self.error))
+        if self.done and not finished:
+            message = f'Demo finished after {self.demo_seconds:g} seconds; stopped.' if self.demo_seconds else 'Target reached; stopped.'
+            self.get_logger().info(message)
         # Missing line, stale sensors or a completed goal => explicit zero.
         self.velocity.publish(command)
 

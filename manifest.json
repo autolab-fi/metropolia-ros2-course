@@ -59,12 +59,13 @@
       "starter": "lessons/1.4/solution.py",
       "checker": "line_follow_v1",
       "line_sensor": true,
-      "target": [
-        0.6,
-        -0.155
-      ],
+      "target": null,
       "tolerance": 0.04,
-      "launch": "python"
+      "launch": "python",
+      "duration_seconds": 55,
+      "previous_starter_sha256": [
+        "a0d08ebc86dd5acf9a0e306aed221ae5cd075c7face5d6080010925ce75d144c"
+      ]
     },
     {
       "id": "reach_target",

@@ -7,7 +7,9 @@ control library is needed.
 
 ## What this demonstration does
 
-The node steers from the eight line sensors. Pose is used only to finish near `(0.60, -0.155)` m. The checker accepts 0.04 m and requires trusted line observations. The starter stops slightly inside that region.
+The node follows the line for **55 seconds**, then publishes zero velocity and logs that the demo has finished. It passes the first green square and continues along the track; it no longer stops at the nearby target point. The ROS node remains running after stopping; use Ctrl+C to end it.
+
+Both `bash run.sh` and Check in lab use this duration. Queue, positioning and runtime startup are separate from the 60-second active laboratory limit. The checker requires sustained forward commands, fresh line readings, at least 0.45 m measured travel and at least 0.25 m displacement from the start. Simply waiting in place will not pass. Simulation and physical hardware can cover different distances in the same time.
 
 ## Start it from Linux
 
@@ -91,6 +93,7 @@ connection. Saved checks can be opened from **Checks**.
 - Publishers, subscriptions and the 0.1-second timer use ordinary `rclpy`.
 - `Twist.linear.x` is forward m/s; `Twist.angular.z` is CCW rad/s.
 - The zero command is published while data is missing or stale.
+- The `demo_seconds` ROS parameter defaults to 55 seconds. The timer starts on the first forward command, and the completion log explains the final stop. The laboratory independently checks duration, actual camera-measured movement and line readings.
 - Simulation raw values and board geometry are illustrative. Physical ADC values
   need not numerically equal simulated values; inspect contrast across channels.
 
@@ -119,3 +122,13 @@ ros2 run my_robot controller
 The default run.sh deliberately starts the same controller.py directly for fast
 demonstration feedback. A lab check runs the exact saved run.sh; changing how you
 launch a node manually does not change that snapshot script.
+
+## Existing saved projects
+
+Starting a new session upgrades an exact, unmodified copy of the previous
+reference program to the 55-second demo. Your edited programs are preserved.
+Stop the old node and end/restart your session to load the update. If an edited
+controller still contains the old nearby-target stop,
+replace `src/my_robot/my_robot/controller.py` with the current complete
+[reference program](https://github.com/autolab-fi/metropolia-ros2-course/blob/main/lessons/1.4/solution.py)
+in nano, save, stop the old node, reset the simulator and run again.
