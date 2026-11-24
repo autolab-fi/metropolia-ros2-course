@@ -1,4 +1,4 @@
-# ROS2 course status — 2026-11-23
+# ROS2 course status — 2026-11-24
 
 Production: [ROS2 course](https://ondroid.org/user/20/ros2).
 Frontend [PR #399](https://github.com/autolab-fi/autolab-fe/pull/399) is merged
@@ -8,6 +8,35 @@ flows passed again, sensor lab check **25872** passed, and the same stand's
 LineRobot passed simulation **25873** and physical check **25874** with live video.
 Detailed architecture, immutable pins and qualification evidence are in the
 [release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/LINE_SENSOR_DEMOS_20261123.md).
+
+## 55-second line-following update — 2026-11-24
+
+Lesson 1.4 now follows the track for 55 seconds in both the personal simulator
+and physical checks, then publishes zero velocity and logs completion. It no
+longer stops at the first green square/nearby goal. The node remains running
+until Ctrl+C. The physical 60-second active limit and all existing motion,
+sensor-freshness and stop guards remain in force. Only this timed activity can
+use the full-track pose region; older target activities retain their original
+smaller region. Timed grading independently requires actual travel/displacement
+and sustained forward commands, not just waiting for the timer.
+
+Longer physical runs exposed several distinct dark regions over coloured-zone
+edges. The reference now tracks one contiguous sensor region nearest the previous
+line position instead of averaging unrelated regions. Recorded readings have
+four real-rclpy regression tests. Physical check **25877 passed**: 55 seconds of
+following, 0.775 m camera-measured travel, all 421 readings line-visible, and
+confirmed stop/device release. A subsequent production LineRobot test drive
+**25879 passed**, proving the shared stand/queue can serve the next course.
+The final published program was also run through the production browser for the
+full duration. Its ROS container simulation measured about 2.2 m travel.
+
+The same frontend remains deployed; this update changes course, runtime, API and
+physical ROS activity only. Starting a new session upgrades an exact unmodified
+old reference, including the first timed reference. Edited student files are
+preserved. Save nano, stop the old node, End session and Start session to load the
+updated reference. Check-in-sim uses the same 55-second requirements.
+
+Details: [timed release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/TIMED_LINE_FOLLOW_20261124.md).
 
 ## Current interactive demonstrations
 
@@ -19,7 +48,7 @@ saved sources for each activity:
 | 1.1 ROS2 sandbox | 409 | Inspect graph, drive, edit and run a node | Qualified in the previous checkpoint | 25862, previous checkpoint |
 | 1.2 Read the eight line sensors | 410 | Subscribe to UInt16MultiArray; remain stopped | Passed | **25863 passed** |
 | 1.3 Move and publish a distance topic | 411 | Pose feedback, Twist and Float32 displacement | Passed | **25865 passed** |
-| 1.4 Follow the line with the line sensor | 412 | Weighted sensor error drives angular velocity | Passed | **25866 passed** |
+| 1.4 Follow the line with the line sensor | 412 | Track one sensor region for 55 seconds | Passed | **25877 passed** |
 | 2.6 Reach a target point | 401 | Original pose-feedback reference | Passed again in container acceptance | Previously qualified; controller path unchanged |
 
 These are runnable playgrounds for testing the environment, not the completed
@@ -33,8 +62,8 @@ the server), while the full ament package and optional colcon workflow remain.
 `run.sh` for an isolated ARM64 run through the existing exclusive robot queue.
 The first explicit zero command starts hardware telemetry while stopped.
 
-Physical demo startup measured 10.7–11.2 seconds. Active checks measured 3.5 seconds
-(sensor monitor), 17.6 seconds (pose movement) and 15.6 seconds (line following).
+On 2026-11-23, physical demo startup measured 10.7–11.2 seconds. Active checks measured 3.5 seconds
+(sensor monitor), 17.6 seconds (pose movement) and 15.6 seconds (the former short line-following demo). The 2026-11-24 timed version is qualified above.
 The first movement trial at 0.03 m/s stalled and timed out; the complete movement
 starters now use the previously qualified 0.04 m/s, within unchanged platform caps.
 Simulation remains ideal kinematics: it does not model this low-speed motor limit.
@@ -54,8 +83,8 @@ The ROS scene interpolates live pose packets between browser polls without
 extrapolating. Saved observations/reset/new sessions snap, and rendering stops
 at rest/hidden. Eight sensor highlights reflect the selected data source;
 ADC noise with the same detection pattern does not trigger idle redraws.
-The goal/tolerance comes from the selected exercise; the stationary sensor demo
-has no destination marker. New UI and renderer changes are isolated to ROS.
+The goal/tolerance comes from the selected exercise; stationary and timed
+line-following demos have no destination marker. New UI and renderer changes are isolated to ROS.
 Shared dashboard typography/styles and LineRobot/OpenCV players are unchanged.
 
 Real browser tests covered manual terminal execution, changing live pose, actual
@@ -89,7 +118,7 @@ active limit, wheel/velocity caps, exclusive allocation, reset, confirmed stop
 and device release remain in force. Sensor cutoff and forbidden monitor movement
 were also tested with real ROS containers.
 
-## Operational follow-up after release
+## Dock observation from the 2026-11-23 release
 
 All course qualifications above passed. On the final return to the magnetic dock,
 normal AutoCharge confirmed three samples twice, but later idle telemetry changed
