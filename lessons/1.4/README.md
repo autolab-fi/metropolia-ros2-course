@@ -97,8 +97,11 @@ connection. Saved checks can be opened from **Checks**.
 - Simulation raw values and board geometry are illustrative. Physical ADC values
   need not numerically equal simulated values; inspect contrast across channels.
 
-The program finds the relative contrast of each channel, then a weighted
-left/right error. A positive error means the line is on the robot's left, so
+The program finds relative contrast and splits neighbouring active channels
+into separate dark regions. It follows the region nearest the previous line
+position, then calculates its weighted left/right error. This matters in the real
+arena: a coloured-zone edge can create an extra dark region. Averaging both
+regions together can steer the robot away from the actual track. A positive error means the line is on the robot's left, so
 positive angular.z turns toward it. In simulation, try reducing the forward
 speed to see how it affects tracking. The physical motors need enough power to
 overcome friction: 0.03 m/s stalled during testing on this stand. Begin physical

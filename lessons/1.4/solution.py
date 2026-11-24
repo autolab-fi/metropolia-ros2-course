@@ -17,6 +17,7 @@ class FollowLine(Node):
         self.create_subscription(PoseStamped, 'robot/pose', self.observe, 10)
         self.create_timer(0.1, self.update)
         self.error = None
+        self.line_index = 3.5
         self.sensor_at = self.pose_at = 0.0
         self.pose = self.initial = None
         self.done = False
@@ -35,10 +36,23 @@ class FollowLine(Node):
         if hi - lo < 80:  # Flat readings do not establish that a line is visible.
             return
         weights = [max(0.0, (v - lo) / (hi - lo) - 0.5) for v in raw]
-        total = sum(weights)
-        if total:
+        # Keep separate dark regions separate: a coloured-zone edge must not
+        # pull the centre of the actual line toward the other side of the bar.
+        groups = []
+        group = []
+        for i, weight in enumerate(weights):
+            if weight > 0:
+                group.append((i, weight))
+            elif group:
+                groups.append(group)
+                group = []
+        if group:
+            groups.append(group)
+        if groups:
+            centres = [sum(i*w for i, w in g)/sum(w for _, w in g) for g in groups]
+            self.line_index = min(centres, key=lambda centre: abs(centre-self.line_index))
             # Channel 0 is RIGHT, channel 7 is LEFT: positive means turn left.
-            self.error = sum(((i - 3.5) / 3.5) * w for i, w in enumerate(weights)) / total
+            self.error = (self.line_index-3.5)/3.5
 
     def observe(self, message):
         self.pose = (message.pose.position.x, message.pose.position.y)

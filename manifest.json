@@ -64,7 +64,8 @@
       "launch": "python",
       "duration_seconds": 55,
       "previous_starter_sha256": [
-        "a0d08ebc86dd5acf9a0e306aed221ae5cd075c7face5d6080010925ce75d144c"
+        "a0d08ebc86dd5acf9a0e306aed221ae5cd075c7face5d6080010925ce75d144c",
+        "5f692bd1f910dd52385c7e8417459a8d58ad7f117c1bcbbf6cc90a5b0d6a6be0"
       ]
     },
     {
