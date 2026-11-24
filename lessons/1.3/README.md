@@ -79,11 +79,19 @@ the robot and starts the same frozen Python node on the Raspberry Pi. The first 
 controller, allowing physical sensor telemetry while the motors remain stopped.
 The ROS node does not access I2C or MQTT itself.
 
-Open **Lab** for the measured physical trajectory and its eight sensor readings.
-The bars below this view are from the actual Octoliner, not an estimate from the
-camera or simulator. **Output** shows preparation, node logs and the final result.
-**ROS Topics** remains your personal simulator's data; it does not switch to lab
-history. Queue/reset/build time precedes the bounded active-control phase.
+Open **Lab** for the real overhead camera stream. After the check, the same
+player offers its recording, using the existing laboratory video controls.
+The recording is associated with this submitted attempt; older recordings can
+expire under the normal video quota.
+
+**ROS Topics** automatically selects the laboratory when you submit Check in lab.
+It shows the physical `/robot/pose`, `/robot/cmd_vel`, `/robot/line_sensors` and
+`/demo/distance` when published. Its **Laboratory** label distinguishes these
+observations from the personal simulator. Selecting **Simulator** returns the
+panel to personal simulation topics; selecting **Lab** returns to physical data.
+After completion, the last laboratory observations retain their timestamps.
+Opening a saved laboratory check selects its observations and recording.
+**Output** shows preparation, node logs and the final result.
 
 Do not edit code after submitting and expect the running check to change: the
 lab executes the saved snapshot. **Stop lab check** cancels that execution. A

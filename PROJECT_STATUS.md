@@ -38,6 +38,23 @@ updated reference. Check-in-sim uses the same 55-second requirements.
 
 Details: [timed release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/TIMED_LINE_FOLLOW_20261124.md).
 
+## Laboratory video and topics update — 2026-11-24
+
+Lab contains the shared LineRobot video player: live overhead camera during a
+physical check, followed by the authorized saved recording. Physical pose,
+commands, line sensors and distance appear in ROS Topics with a Laboratory label.
+Selecting Simulator returns to personal-session values. This does not add a ROS
+camera topic. The existing media server retains the last three recordings per user.
+
+Physical ROS **25883 passed** with 55 seconds of line following, advancing live
+video, 102 physical topic updates, a playable 640×480 recording, and confirmed
+stop/release. The next ordinary Metropolia LineRobot **25884 passed**. Browser
+checks covered desktop, tablet and mobile playback/source switching with no page
+JavaScript errors. The final queues are empty and the charging cron is idle.
+
+Details: [video/topics release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/LAB_VIDEO_TOPICS_20261124.md).
+Frontend: [PR400](https://github.com/autolab-fi/autolab-fe/pull/400).
+
 ## Current interactive demonstrations
 
 Course 20 contains complete English integration demonstrations, with independent
@@ -73,10 +90,14 @@ Simulation remains ideal kinematics: it does not model this low-speed motor limi
 Simulator and Lab are separate Dockview modules, visible in their own right-hand
 panels on desktop. Layout version 5 gives the simulator and physical observation
 usable height; students can rearrange them. Simulator contains only the scene.
-ROS Topics shows current personal-session messages, without source selectors,
-sample counters or Saved attempt / Live workspace labels. Lab displays the
-physical check's measured pose, eight physical sensor readings and student
-published displacement, when available. It does not display physical camera video.
+ROS Topics automatically shows physical attempt messages after Check in lab or
+selecting a lab result, including measured pose, commands, eight physical sensor
+readings and student-published displacement. Selecting Simulator returns to the
+personal session topics. A source label identifies Laboratory or Simulator;
+there are no source buttons, sample counters or Saved attempt / Live workspace
+labels. Completed physical values retain their observation timestamps. Lab contains
+only the shared LineRobot video player: real overhead camera during a check,
+then its authorized saved recording. Old attempts without video show an empty state.
 Saved outcomes and logs remain in Checks and Output.
 
 The ROS scene interpolates live pose packets between browser polls without
@@ -86,6 +107,7 @@ ADC noise with the same detection pattern does not trigger idle redraws.
 The goal/tolerance comes from the selected exercise; stationary and timed
 line-following demos have no destination marker. New UI and renderer changes are isolated to ROS.
 Shared dashboard typography/styles and LineRobot/OpenCV players are unchanged.
+The new ROS video adapter uses the existing player without modifying it.
 
 Real browser tests covered manual terminal execution, changing live pose, actual
 sensor/custom topics, terminal practice, snapshot submission, physical readings
