@@ -30,7 +30,8 @@ ros2 node info /ondroid_bridge
 - **Subscribers**: topics from which this node receives messages.
 
 Services and other sections can be left for a later lesson. Keep the terminal
-output available while you answer the questions below.
+output available while you answer the questions below. If a section is above the
+visible area, scroll upward inside the terminal to review earlier lines.
 
 ## Connect names to behavior
 

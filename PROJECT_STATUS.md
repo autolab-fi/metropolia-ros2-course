@@ -12,6 +12,47 @@ check **25874** with live video.
 Detailed architecture, immutable pins and qualification evidence are in the
 [release report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/LINE_SENSOR_DEMOS_20261123.md).
 
+## First learning module — 2026-11-25
+
+Module 1 now contains six English beginner lessons, each with small starters,
+step-by-step instructions, expected observations, independent work and error hints:
+
+| Lesson | Activity | Native task | Verification |
+| --- | --- | --- | --- |
+| 1.1 Why robots use ROS2 | `why_ros` | 413 | Saved conceptual answers |
+| 1.2 Find and inspect a node | `explore_nodes` | 414 | Saved answers from CLI/Inspector investigation |
+| 1.3 Read a typed message | `read_topics` | 415 | Topic/type/frame answers |
+| 1.4 Publish with the ROS CLI | `publish_cli` | 416 | Actual Float32 publication |
+| 1.5 Write a Python publisher | `write_publisher` | 417 | Named publishing endpoint and repeated values |
+| 1.6 Receive and respond | `write_subscriber` | 418 | Input/output connections and three random doubled inputs |
+
+These lessons use **Check in simulator** and cannot reserve a physical robot.
+The first three checks evaluate saved `src/answers.json`, not terminal history.
+The next three launch saved files in real ROS; printed success text cannot pass.
+Terminal `check-in-sim` offers the same criteria as practice. Individual PASS/FAIL
+criteria and the verdict appear in Output; Checks remains history. Initial source
+files are prepared per lesson, with nano's edit path shown in the terminal banner.
+
+All six passed reference-container, real terminal and native browser qualification.
+Wrong temperature, wrong type, constant subscriber responses and fake success
+stdout fail. Native successful checks are **25891–25895** and **25897**; initial
+answers **25890** and constant subscriber **25896** failed as expected. Sources
+were restored to their unfinished starters afterward. The original robot demos
+passed simulation regression; physical ROS **25898** and following LineRobot
+**25899** passed on the unchanged Raspberry Pi worker. Browser checks covered
+multiple terminals, nano saving, live messages, Output and responsive layouts.
+
+The existing five demonstrations are grouped into module 2 while preserving task
+IDs, activity IDs, edited sources and history. Older frontends keep seeing those
+compatible demos until they advertise support for foundations. The Lab module is
+omitted for introductory lessons but restored when physical history is opened.
+No graphs, file browser, editor or additional result panels are added.
+
+[PR402](https://github.com/autolab-fi/autolab-fe/pull/402) and
+[architecture/qualification](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/FOUNDATIONS_20261125.md).
+The remaining beginner curriculum still needs to turn the robot demonstrations
+into progressive sensor, movement and project exercises.
+
 ## 55-second line-following update — 2026-11-24
 
 Lesson 1.4 now follows the track for 55 seconds in both the personal simulator
@@ -94,21 +135,22 @@ find each demonstration node and inspect its topics.
 [PR401](https://github.com/autolab-fi/autolab-fe/pull/401) is merged and published
 to production. See the [architecture/qualification report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/INSPECTOR_20261125.md).
 
-## Current interactive demonstrations
+## Robot integration demonstrations (module 2)
 
 Course 20 contains complete English integration demonstrations, with independent
 saved sources for each activity:
 
 | Lesson | Native task | Behavior | Browser simulator | Metropolia laboratory submission |
 | --- | --- | --- | --- | --- |
-| 1.1 ROS2 sandbox | 409 | Inspect graph, drive, edit and run a node | Passed | **25885 passed** |
-| 1.2 Read the eight line sensors | 410 | Subscribe to UInt16MultiArray; remain stopped | Passed | **25886 passed** |
-| 1.3 Move and publish a distance topic | 411 | Pose feedback, Twist and Float32 displacement | Passed | **25887 passed** |
-| 1.4 Follow the line with the line sensor | 412 | Track one sensor region for 55 seconds | Passed | **25888 passed** |
+| 2.1 ROS2 sandbox | 409 | Inspect graph, drive, edit and run a node | Passed | **25885 passed** |
+| 2.2 Read the eight line sensors | 410 | Subscribe to UInt16MultiArray; remain stopped | Passed | **25886 passed** |
+| 2.3 Move and publish a distance topic | 411 | Pose feedback, Twist and Float32 displacement | Passed | **25887 passed** |
+| 2.4 Follow the line with the line sensor | 412 | Track one sensor region for 55 seconds | Passed | **25888 passed** |
 | 2.6 Reach a target point | 401 | Original pose-feedback reference | Passed again in container acceptance | Previously qualified; controller path unchanged |
 
 These are runnable playgrounds for testing the environment, not the completed
-beginner curriculum. The 24-lesson plan still needs step-by-step teaching material.
+beginner curriculum. Module 1 supplies the first six beginner lessons; the rest of the 24-lesson plan
+still needs step-by-step teaching material.
 
 Starting Linux starts the personal ROS simulation on the server. Up to four PTYs
 share the same source files, ROS graph and simulator; they do not reserve the Pi.

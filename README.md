@@ -2,7 +2,7 @@
 
 An English, self-paced beginner course for the Metropolia mobile robot and its
 simulator. The agreed curriculum contains four modules (24 lessons) and a final
-project. Development starts with the technical vertical slice **2.6 Reach a target
+project. Development started with the technical vertical slice **2.6 Reach a target
 point**, so the complete execution path can be qualified before authoring all the
 prerequisite exercises.
 
