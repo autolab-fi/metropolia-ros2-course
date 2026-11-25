@@ -1,10 +1,11 @@
-# ROS2 course status — 2026-11-24
+# ROS2 course status — 2026-11-25
 
 Production: [ROS2 course](https://ondroid.org/user/20/ros2).
-Latest frontend [PR400](https://github.com/autolab-fi/autolab-fe/pull/400) is merged
-as `1fcc19c`; publication workflow `45434854743` succeeded for frontend and simulator.
-The production browser rechecked physical topic display, saved video playback
-and source switching. Full qualification is recorded in the video/topics section below.
+Latest frontend [PR401](https://github.com/autolab-fi/autolab-fe/pull/401) is merged
+as `822a407`; publication workflow `45585862613` succeeded for frontend and simulator.
+The production browser rechecked personal node discovery, saved physical nodes,
+node-to-topic links, sensor display, video playback and source switching without
+page JavaScript errors. Full qualification is recorded in the Inspector section below.
 The previous PR399 checkpoint passed all three terminal/practice flows, sensor
 lab check **25872**, and the same stand's LineRobot simulation **25873** and physical
 check **25874** with live video.
@@ -59,6 +60,40 @@ Frontend: [PR400](https://github.com/autolab-fi/autolab-fe/pull/400), merged and
 published to production. Recording playback and source switching were rechecked
 on production with no page JavaScript errors.
 
+## ROS Inspector update — 2026-11-25
+
+The existing ROS Topics module becomes **ROS Inspector**, with **Topics** and
+**Nodes** views in the same dock panel. Topics discovers learner-created names,
+types, endpoint counts, observed frequency and bounded message previews. Nodes
+shows actual node names and their publishers/subscriptions, linking to Topics.
+System topics are hidden by default. The eight-channel line sensor display is
+reused when that topic is selected. No file browser, editor or additional panel
+is added. Lab continues to show only live camera and recorded video.
+
+The same observer runs in personal simulation and each isolated lab check.
+Selecting Simulator returns to the personal graph; Check in lab or selecting a
+lab result selects the physical graph. After completion the latest snapshot keeps
+its timestamp. The terminal always belongs to the personal simulation. Snapshots
+are diagnostic only and cannot supply grading/motion evidence. Standard-message
+student topics require no registration; custom interface types need to be installed
+in the runtime for message previews. Large sensor payloads have metadata only.
+
+All current examples passed through the PR401 browser and on the real robot:
+**25885** sandbox, **25886** sensor monitor, **25887** distance with an additional
+student node publishing `/student/error`, **25888** 55-second line following.
+The custom node/topic appeared in both environments. Each check had live graph
+updates, live camera, playable recording and confirmed release. The following
+ordinary LineRobot **25889 passed**, and both queues were empty. Inspector was
+checked at desktop, tablet and mobile widths with no page JavaScript errors.
+
+Frontend CI passed 110 unit and 29 browser foundation tests; runtime tests 21,
+API/claim tests 13. Real ROS container acceptance passed all four existing demos
+and custom publisher discovery/removal through the PTY. Lessons explain how to
+find each demonstration node and inspect its topics.
+
+[PR401](https://github.com/autolab-fi/autolab-fe/pull/401) is merged and published
+to production. See the [architecture/qualification report](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/INSPECTOR_20261125.md).
+
 ## Current interactive demonstrations
 
 Course 20 contains complete English integration demonstrations, with independent
@@ -66,10 +101,10 @@ saved sources for each activity:
 
 | Lesson | Native task | Behavior | Browser simulator | Metropolia laboratory submission |
 | --- | --- | --- | --- | --- |
-| 1.1 ROS2 sandbox | 409 | Inspect graph, drive, edit and run a node | Qualified in the previous checkpoint | 25862, previous checkpoint |
-| 1.2 Read the eight line sensors | 410 | Subscribe to UInt16MultiArray; remain stopped | Passed | **25863 passed** |
-| 1.3 Move and publish a distance topic | 411 | Pose feedback, Twist and Float32 displacement | Passed | **25865 passed** |
-| 1.4 Follow the line with the line sensor | 412 | Track one sensor region for 55 seconds | Passed | **25877 passed** |
+| 1.1 ROS2 sandbox | 409 | Inspect graph, drive, edit and run a node | Passed | **25885 passed** |
+| 1.2 Read the eight line sensors | 410 | Subscribe to UInt16MultiArray; remain stopped | Passed | **25886 passed** |
+| 1.3 Move and publish a distance topic | 411 | Pose feedback, Twist and Float32 displacement | Passed | **25887 passed** |
+| 1.4 Follow the line with the line sensor | 412 | Track one sensor region for 55 seconds | Passed | **25888 passed** |
 | 2.6 Reach a target point | 401 | Original pose-feedback reference | Passed again in container acceptance | Previously qualified; controller path unchanged |
 
 These are runnable playgrounds for testing the environment, not the completed
@@ -94,7 +129,7 @@ Simulation remains ideal kinematics: it does not model this low-speed motor limi
 Simulator and Lab are separate Dockview modules, visible in their own right-hand
 panels on desktop. Layout version 5 gives the simulator and physical observation
 usable height; students can rearrange them. Simulator contains only the scene.
-ROS Topics automatically shows physical attempt messages after Check in lab or
+ROS Inspector automatically shows physical attempt messages after Check in lab or
 selecting a lab result, including measured pose, commands, eight physical sensor
 readings and student-published displacement. Selecting Simulator returns to the
 personal session topics. A source label identifies Laboratory or Simulator;

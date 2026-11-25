@@ -32,7 +32,7 @@ bash run.sh
 ```
 
 These single-file demos launch Python directly in the installed ROS environment,
-so no package build is needed for the first run. Watch Simulator and ROS Topics.
+so no package build is needed for the first run. Watch Simulator and ROS Inspector.
 `/robot/line_sensors` uses `std_msgs/msg/UInt16MultiArray`; `message.data` contains
 exactly eight ADC readings, channel **0 on the right**, channel **7 on the left**.
 The eight bars show the readings; green marks channels with line contrast.
@@ -70,6 +70,10 @@ ros2 service call /simulation/reset std_srvs/srv/Empty '{}'
 
 Source files belong to this activity and are saved independently of other demos.
 
+In **ROS Inspector → Nodes**, find `/follow_line`. Inspect its subscriptions
+and publications. Select `/robot/line_sensors` for the sensor display,
+`/robot/cmd_vel` for steering commands, or `/demo/distance` for displacement.
+
 ## Run the same code on the physical robot
 
 Save all source files, then choose **Check in lab**. The existing queue positions
@@ -82,7 +86,7 @@ player offers its recording, using the existing laboratory video controls.
 The recording is associated with this submitted attempt; older recordings can
 expire under the normal video quota.
 
-**ROS Topics** automatically selects the laboratory when you submit Check in lab.
+**ROS Inspector** automatically selects the laboratory when you submit Check in lab.
 It shows the physical `/robot/pose`, `/robot/cmd_vel`, `/robot/line_sensors` and
 `/demo/distance` when published. Its **Laboratory** label distinguishes these
 observations from the personal simulator. Selecting **Simulator** returns the

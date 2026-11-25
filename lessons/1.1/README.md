@@ -9,7 +9,7 @@ virtual robot, then run the Python node, and finally submit its files to the lab
 Choose **Start session** in **Terminals**. A Linux container and a simulator start
 together on the server. The **Simulator** view shows the robot immediately;
 you do not need to run a check first. This panel contains only the scene; use
-your terminals and ROS Topics to inspect the running system. The separate Lab
+your terminals and ROS Inspector to inspect the running system. The separate Lab
 panel is reserved for the physical check.
 
 Use **+** to open more terminals, up to four. These are independent shells in
@@ -54,9 +54,17 @@ the initial position is approximately `(0.40, -0.185)`. Orientation is a
 quaternion. The timestamp changes even when the position does not.
 **Ctrl+C** stops this command. It does not end your environment.
 
-Open **ROS Topics** to see the latest pose and, once you send one, the latest
+Open **ROS Inspector** to see the latest pose and, once you send one, the latest
 velocity message from your current personal session. A displayed command is the
 last received message, not proof that the robot is still moving.
+
+In Inspector, **Topics** lists discovered topics. Select `/robot/pose` to inspect
+its message type, endpoint counts, observed frequency and latest message.
+**Nodes** lists the actual running nodes. Expand `/ondroid_bridge` to inspect
+its publications and subscriptions; selecting a topic there opens its details.
+After you run your own node, it appears in the same list. Inspector itself
+subscribes to topics for previews, so it contributes to subscriber counts.
+System topics are hidden unless you select **Show system topics**.
 
 ## 3. Move without a Python node
 
@@ -67,7 +75,7 @@ ros2 topic pub --rate 10 /robot/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.
 ```
 
 Watch the robot move in **Simulator** and the x coordinate change in Terminal 3
-and ROS Topics. After about two seconds, press **Ctrl+C** in Terminal 2.
+and ROS Inspector. After about two seconds, press **Ctrl+C** in Terminal 2.
 The command stream stops; the model stops within about half a second.
 No check, recording or laboratory booking is needed for this experiment.
 
@@ -147,10 +155,12 @@ copied. The laboratory runs only the saved project. A manual turn performed in
 step 3 does not make the physical robot turn. Later file edits do not change an
 already submitted snapshot.
 
-**Output** shows queue/reset events and the result. Open the separate **Lab**
-panel to see the attempt's measured trajectory. **Simulator** continues to show
-your personal model, and **ROS Topics** continues to show your personal session's
-messages. **Stop lab check** cancels the laboratory check.
+**Output** shows queue/reset events and the result. Open **Lab** for the real
+camera stream and the recording after completion. **ROS Inspector** switches to
+the laboratory's nodes and topics during this check. **Simulator** continues to
+show your personal model; selecting it returns Inspector to that personal
+environment. Terminal commands still inspect the personal simulation; they do
+not attach to the physical check. **Stop lab check** cancels the laboratory check.
 
 ## Keep your work
 
