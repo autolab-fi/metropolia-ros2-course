@@ -1,11 +1,13 @@
 # ROS2 course status — 2026-11-25
 
 Production: [ROS2 course](https://ondroid.org/user/20/ros2).
-Latest frontend [PR402](https://github.com/autolab-fi/autolab-fe/pull/402) is merged
-as `a3a96f9`; publication workflow `45601381101` succeeded for frontend and simulator.
-The production browser rechecked a live publisher, saved-source grading (**25900**),
-Output criteria, the 3D scene and physical history playback from an introductory
-lesson. There were no page JavaScript errors. Qualification is recorded below.
+Latest frontend [PR403](https://github.com/autolab-fi/autolab-fe/pull/403) is merged
+as `98799c5`; publication workflow `45606136257` succeeded for frontend and simulator.
+A read-only production browser rechecked the lower-right Simulator/Lab group,
+initial Simulator tab, saved tab selection after reload and Reset across desktop,
+tablet and mobile widths, with no page JavaScript errors. Saved personal layouts
+are preserved. The preceding foundations release passed a live publisher and
+saved-source grading (**25900**), Output criteria and physical history playback.
 The previous PR399 checkpoint passed all three terminal/practice flows, sensor
 lab check **25872**, and the same stand's LineRobot simulation **25873** and physical
 check **25874** with live video.
@@ -170,9 +172,13 @@ Simulation remains ideal kinematics: it does not model this low-speed motor limi
 
 ## Interface and live data
 
-Simulator and Lab are separate Dockview modules, visible in their own right-hand
-panels on desktop. Layout version 5 gives the simulator and physical observation
-usable height; students can rearrange them. Simulator contains only the scene.
+Simulator and Lab are separate Dockview modules in one lower-right tab group,
+with Simulator initially active and Lab behind it. Terminals occupy the upper
+right; Output and ROS Inspector share the lower middle group. Starting a physical
+check or opening its history activates Lab. Simulation-only lessons keep Lab
+omitted unless physical history is selected. The existing version-5 layout key
+preserves saved personal arrangements; fresh layouts and Reset use the new
+default. Simulator contains only the scene.
 ROS Inspector automatically shows physical attempt messages after Check in lab or
 selecting a lab result, including measured pose, commands, eight physical sensor
 readings and student-published displacement. Selecting Simulator returns to the
@@ -457,3 +463,19 @@ https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/docker/MET
 The final normal charge cycle was confirmed with three stable samples, and the
 charging cron was restored. The native pilot card directs to PR 387 while the
 production frontend still awaits review.
+
+## Default layout update — 2026-11-25
+
+[PR403](https://github.com/autolab-fi/autolab-fe/pull/403) groups Simulator and Lab
+in the lower-right workspace without changing shared Dockview or global styles.
+The ROS browser geometry test verifies the shared group below the terminals and
+to the right of Output, initial Simulator selection, preserved selection after
+reload, and Reset. Inspector, foundations and live/recorded video fixtures pass.
+Frontend CI: 110 unit and 30 browser foundation tests; type checking has zero
+errors and 15 existing warnings. A read-only browser preview also verified the
+layout at desktop, tablet and mobile widths using the real public ROS scene.
+No student session or physical check was required for this layout change.
+
+PR403 is published to production. Verification used mocked course metadata and
+the real public ROS scene, without starting Linux or reserving the robot. Existing
+users can keep their arrangement or choose Reset to apply the new default.
