@@ -3,11 +3,169 @@
   "runtime": "ros2-jazzy",
   "lessons": [
     {
-      "id": "ros_sandbox",
+      "id": "why_ros",
       "number": "1.1",
-      "title": "ROS2 sandbox: observe, drive and run a node",
+      "title": "Why robots use ROS2",
       "module_number": 1,
-      "module_title": "Interactive ROS2 sandbox",
+      "module_title": "ROS2 foundations",
+      "markdown": "lessons/foundations/why_ros/README.md",
+      "starter": "lessons/foundations/why_ros/starter.py",
+      "checker": "ros_basics_v1",
+      "target": null,
+      "launch": "python",
+      "learning": {
+        "kind": "answers",
+        "answers": {
+          "ros_role": {
+            "expected": "communication_and_tools",
+            "label": "Explain the role of ROS2",
+            "hint": "ROS2 helps programs exchange typed messages and provides development tools."
+          },
+          "node": {
+            "expected": "running_ros_component",
+            "label": "Identify a node",
+            "hint": "A node is a running software component in a ROS system, not a sensor or a file."
+          },
+          "topic": {
+            "expected": "named_message_channel",
+            "label": "Identify a topic",
+            "hint": "A topic is a named channel carrying messages of a specified type."
+          }
+        }
+      },
+      "project_files": {
+        "src/answers.json": "lessons/foundations/why_ros/answers.json"
+      }
+    },
+    {
+      "id": "explore_nodes",
+      "number": "1.2",
+      "title": "Find and inspect a ROS2 node",
+      "module_number": 1,
+      "module_title": "ROS2 foundations",
+      "markdown": "lessons/foundations/explore_nodes/README.md",
+      "starter": "lessons/foundations/explore_nodes/starter.py",
+      "checker": "ros_basics_v1",
+      "target": null,
+      "launch": "python",
+      "learning": {
+        "kind": "answers",
+        "answers": {
+          "node_name": {
+            "expected": "/ondroid_bridge",
+            "label": "Find the platform node",
+            "hint": "Use ros2 node list or Inspector \u2192 Nodes; preserve the leading slash."
+          },
+          "publishes": {
+            "expected": "/robot/pose",
+            "label": "Find the coordinate publication",
+            "hint": "Look under Publishers in ros2 node info /ondroid_bridge."
+          },
+          "subscribes": {
+            "expected": "/robot/cmd_vel",
+            "label": "Find the motion-command subscription",
+            "hint": "Look under Subscribers for geometry_msgs/msg/Twist."
+          }
+        }
+      },
+      "project_files": {
+        "src/answers.json": "lessons/foundations/explore_nodes/answers.json"
+      }
+    },
+    {
+      "id": "read_topics",
+      "number": "1.3",
+      "title": "Read a topic and understand its message",
+      "module_number": 1,
+      "module_title": "ROS2 foundations",
+      "markdown": "lessons/foundations/read_topics/README.md",
+      "starter": "lessons/foundations/read_topics/starter.py",
+      "checker": "ros_basics_v1",
+      "target": null,
+      "launch": "python",
+      "learning": {
+        "kind": "answers",
+        "answers": {
+          "topic_name": {
+            "expected": "/robot/pose",
+            "label": "Identify the coordinate topic",
+            "hint": "Find the platform coordinate topic with ros2 topic list -t."
+          },
+          "message_type": {
+            "expected": "geometry_msgs/msg/PoseStamped",
+            "label": "Identify the full message type",
+            "hint": "Use ros2 topic info and keep the package/msg/type spelling."
+          },
+          "frame_id": {
+            "expected": "map",
+            "label": "Read header.frame_id",
+            "hint": "Use ros2 topic echo /robot/pose --once and inspect header.frame_id."
+          }
+        }
+      },
+      "project_files": {
+        "src/answers.json": "lessons/foundations/read_topics/answers.json"
+      }
+    },
+    {
+      "id": "publish_cli",
+      "number": "1.4",
+      "title": "Publish your first ROS2 message",
+      "module_number": 1,
+      "module_title": "ROS2 foundations",
+      "markdown": "lessons/foundations/publish_cli/README.md",
+      "starter": "lessons/foundations/publish_cli/starter.py",
+      "checker": "ros_basics_v1",
+      "target": null,
+      "launch": "python",
+      "primary_topic": "learning/temperature",
+      "learning": {
+        "kind": "cli_publisher"
+      },
+      "project_files": {
+        "run.sh": "lessons/foundations/publish_cli/run.sh"
+      }
+    },
+    {
+      "id": "write_publisher",
+      "number": "1.5",
+      "title": "Write a Python publisher",
+      "module_number": 1,
+      "module_title": "ROS2 foundations",
+      "markdown": "lessons/foundations/write_publisher/README.md",
+      "starter": "lessons/foundations/write_publisher/starter.py",
+      "checker": "ros_basics_v1",
+      "target": null,
+      "launch": "python",
+      "primary_topic": "learning/temperature",
+      "learning": {
+        "kind": "publisher",
+        "node": "temperature_publisher"
+      }
+    },
+    {
+      "id": "write_subscriber",
+      "number": "1.6",
+      "title": "Receive a message and publish a response",
+      "module_number": 1,
+      "module_title": "ROS2 foundations",
+      "markdown": "lessons/foundations/write_subscriber/README.md",
+      "starter": "lessons/foundations/write_subscriber/starter.py",
+      "checker": "ros_basics_v1",
+      "target": null,
+      "launch": "python",
+      "primary_topic": "learning/output",
+      "learning": {
+        "kind": "subscriber",
+        "node": "doubler"
+      }
+    },
+    {
+      "id": "ros_sandbox",
+      "number": "2.1",
+      "title": "ROS2 sandbox: observe, drive and run a node",
+      "module_number": 2,
+      "module_title": "Robot integration demonstrations",
       "markdown": "lessons/1.1/README.md",
       "starter": "lessons/1.1/solution.py",
       "checker": "reach_target_v1",
@@ -20,10 +178,10 @@
     },
     {
       "id": "line_sensor_monitor",
-      "number": "1.2",
+      "number": "2.2",
       "title": "Read the eight line sensors",
-      "module_number": 1,
-      "module_title": "Interactive ROS2 sandbox",
+      "module_number": 2,
+      "module_title": "Robot integration demonstrations",
       "markdown": "lessons/1.2/README.md",
       "starter": "lessons/1.2/solution.py",
       "checker": "line_sensor_observe_v1",
@@ -34,10 +192,10 @@
     },
     {
       "id": "drive_and_topics",
-      "number": "1.3",
+      "number": "2.3",
       "title": "Move and publish a distance topic",
-      "module_number": 1,
-      "module_title": "Interactive ROS2 sandbox",
+      "module_number": 2,
+      "module_title": "Robot integration demonstrations",
       "markdown": "lessons/1.3/README.md",
       "starter": "lessons/1.3/solution.py",
       "checker": "reach_target_v1",
@@ -51,10 +209,10 @@
     },
     {
       "id": "line_sensor_follow",
-      "number": "1.4",
+      "number": "2.4",
       "title": "Follow the line with ROS2",
-      "module_number": 1,
-      "module_title": "Interactive ROS2 sandbox",
+      "module_number": 2,
+      "module_title": "Robot integration demonstrations",
       "markdown": "lessons/1.4/README.md",
       "starter": "lessons/1.4/solution.py",
       "checker": "line_follow_v1",
@@ -80,7 +238,9 @@
         -0.185
       ],
       "tolerance": 0.03,
-      "line_sensor": false
+      "line_sensor": false,
+      "module_number": 2,
+      "module_title": "Robot integration demonstrations"
     }
   ]
 }

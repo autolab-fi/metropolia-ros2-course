@@ -1,0 +1,5 @@
+{
+  "topic_name": "/robot/pose",
+  "message_type": "geometry_msgs/msg/PoseStamped",
+  "frame_id": "map"
+}

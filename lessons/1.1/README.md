@@ -1,4 +1,4 @@
-# 1.1 ROS2 sandbox: observe, drive and run a node
+# 2.1 ROS2 sandbox: observe, drive and run a node
 
 Use this activity to explore the whole workflow before writing a node yourself.
 The starting project is complete. First use normal ROS commands to move the

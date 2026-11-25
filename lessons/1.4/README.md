@@ -1,4 +1,4 @@
-# 1.4 Follow the line with ROS2
+# 2.4 Follow the line with ROS2
 
 This complete demonstration is for testing the ROS environment before writing
 its pieces yourself. The same Python node runs in the personal Linux simulator

@@ -1,4 +1,4 @@
-# 1.3 Move and publish a distance topic
+# 2.3 Move and publish a distance topic
 
 This complete demonstration is for testing the ROS environment before writing
 its pieces yourself. The same Python node runs in the personal Linux simulator

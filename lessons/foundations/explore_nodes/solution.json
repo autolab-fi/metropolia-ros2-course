@@ -1,0 +1,5 @@
+{
+  "node_name": "/ondroid_bridge",
+  "publishes": "/robot/pose",
+  "subscribes": "/robot/cmd_vel"
+}

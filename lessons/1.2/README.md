@@ -1,4 +1,4 @@
-# 1.2 Read the eight line sensors
+# 2.2 Read the eight line sensors
 
 This complete demonstration is for testing the ROS environment before writing
 its pieces yourself. The same Python node runs in the personal Linux simulator

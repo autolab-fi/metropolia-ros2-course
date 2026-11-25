@@ -1,0 +1,5 @@
+{
+  "ros_role": "communication_and_tools",
+  "node": "running_ros_component",
+  "topic": "named_message_channel"
+}

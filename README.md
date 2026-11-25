@@ -6,17 +6,26 @@ project. Development starts with the technical vertical slice **2.6 Reach a targ
 point**, so the complete execution path can be qualified before authoring all the
 prerequisite exercises.
 
-`manifest.json` lists runnable pilot lessons. **1.1 ROS2 sandbox** is a guided
-interactive test of terminal commands, live topics, movement, reset, editing,
-project execution and a saved-project laboratory check. Its files are separate
-from lesson 2.6. Complete demonstrations **1.2 Read the eight line sensors**,
-**1.3 Move and publish a distance topic**, and **1.4 Follow the line with the
-line sensor** use ordinary ROS publishers/subscribers in both personal simulation
-and the physical laboratory. Each activity has independent saved sources. `lessons/2.6/README.md` explains the
-exercise and `solution.py` is its complete starter for integration testing.
-`examples/reach_target.py` is the reference solution. This repository is lesson
-content; execution belongs to `ondroid-ros2-runtime` and the existing physical
-worker. It contains no credentials or user submissions.
+`manifest.json` contains two implemented modules:
+
+- **Module 1 — ROS2 foundations (1.1–1.6):** why ROS2, node discovery, reading
+  messages, CLI publication, a Python publisher and a subscriber responding to
+  changing inputs. These English lessons have small unfinished starters, detailed
+  steps and simulation-only checks with individual criteria in Output.
+- **Module 2 — Robot integration demonstrations:** the existing sandbox, line
+  sensors, distance publication, line following and target exercise. These retain
+  their native activity IDs and saved sources; they remain complete integration
+  examples rather than the final step-by-step robot curriculum.
+
+The initial foundations questions evaluate saved `src/answers.json` responses.
+Publisher/subscriber checks launch saved files in real ROS2 and observe messages;
+random inputs prevent a constant subscriber answer from passing. A terminal's
+`check-in-sim` offers practice feedback; **Check in simulator** records a graded
+attempt. These lessons never reserve or move the physical robot.
+
+The course repository contains content and reference solutions. Execution belongs
+to `ondroid-ros2-runtime` and the existing physical worker. It contains no credentials
+or user submissions.
 
 The production pilot is a normal course in the main platform database. Its card
 opens a separate ROS workspace using the existing dashboard header, dock,
