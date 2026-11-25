@@ -1,11 +1,11 @@
 # ROS2 course status — 2026-11-25
 
 Production: [ROS2 course](https://ondroid.org/user/20/ros2).
-Latest frontend [PR401](https://github.com/autolab-fi/autolab-fe/pull/401) is merged
-as `822a407`; publication workflow `45585862613` succeeded for frontend and simulator.
-The production browser rechecked personal node discovery, saved physical nodes,
-node-to-topic links, sensor display, video playback and source switching without
-page JavaScript errors. Full qualification is recorded in the Inspector section below.
+Latest frontend [PR402](https://github.com/autolab-fi/autolab-fe/pull/402) is merged
+as `a3a96f9`; publication workflow `45601381101` succeeded for frontend and simulator.
+The production browser rechecked a live publisher, saved-source grading (**25900**),
+Output criteria, the 3D scene and physical history playback from an introductory
+lesson. There were no page JavaScript errors. Qualification is recorded below.
 The previous PR399 checkpoint passed all three terminal/practice flows, sensor
 lab check **25872**, and the same stand's LineRobot simulation **25873** and physical
 check **25874** with live video.
@@ -48,7 +48,9 @@ compatible demos until they advertise support for foundations. The Lab module is
 omitted for introductory lessons but restored when physical history is opened.
 No graphs, file browser, editor or additional result panels are added.
 
-[PR402](https://github.com/autolab-fi/autolab-fe/pull/402) and
+[PR402](https://github.com/autolab-fi/autolab-fe/pull/402) is merged and published.
+Production publisher **25900 passed**; its starter was restored after testing.
+Physical history playback was rechecked from an introductory lesson. See
 [architecture/qualification](https://github.com/autolab-fi/ondroid-backend-server/blob/main/devops/ros2/FOUNDATIONS_20261125.md).
 The remaining beginner curriculum still needs to turn the robot demonstrations
 into progressive sensor, movement and project exercises.
